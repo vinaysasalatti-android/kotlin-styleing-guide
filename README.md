@@ -392,5 +392,172 @@ When accessing a nullable value, use the safe call operator if the value is only
 ```kotlin
 editText?.setText("foo")
 ```
+## XML Guidance
 
+Because the lack of XML namespaces, makes managing Android resources tedious. And causes things to grow out of control easily, especially in large projects.
+So let’s introduce a simple scheme that will solve your pains.
  
+  + easy lookup of any resource (autocomplete)
+  + logical, predictable names
+  + clean ordering of resources
+  + strongly typed resources
+
+### Basic principle
+
+All resource names follow a simple convention.
+
+![whatwheredescriptionsize](/assets/whatwheredescriptionsize.jpg)
+
+Let’s first describe every element briefly. After the advantages, we’ll see how this applies to each resource type.
+
+` <WHAT>`
+- Indicate what the resource actually represents, often a standard Android view class. Limited options per resource type.(e.g. MainActivity -> activity)
+
+` <WHERE>`
+- Describe where it logically belongs in the app. Resources used in multiple screens use all, all others use the custom part of the Android view subclass they are in. (e.g. MainActivity -> main, ArticleDetailFragment -> articledetail)
+
+`<DESCRIPTION>`
+- Differentiate multiple elements in one screen.(e.g. title)
+
+`<SIZE> (optional)`
+- Either a precise size or size bucket. Optionally used for drawables and dimensions.(e.g. 24dp, small))
+
+![resourcenaming_cheatsheet](/assets/resourcenaming_cheatsheet.png)
+
+### Advantages
+
+#### 1. Ordering of resources by screen
+The WHERE part describes what screen a resource belongs to. Hence it is easy to get all IDs, drawables, dimensions,… for a particular screen.
+
+#### 2. Strongly typed resource IDs
+For resource IDs, the WHAT describes the class name of the xml element it belongs to. This makes is easy to what to cast your findViewById() calls to.
+
+#### 3. Better resource organizing
+File browsers/project navigator usually sort files alphabetically. This means layouts and drawables are grouped by their WHAT (activity, fragment,..) and WHERE prefix respectively. A simple Android Studio plugin/feature can now display these resources as if they were in their own folder.
+
+#### 4. More efficient autocomplete
+Because resource names are far more predictable, using the IDE’s autocomplete becomes even easier. Usually entering the WHAT or WHERE is sufficient to narrow autocomplete down to a limited set of options.
+
+#### 5. No more name conflicts
+Similar resources in different screens are either all or have a different WHERE. A fixed naming scheme avoids all naming collisions.
+
+#### 6. Cleaner resource names
+Overall all resources will be named more logical, causing a cleaner Android project.
+
+#### 7. Tools support
+This naming scheme could be easily supported by the Android Studio offering features such as: lint rules to enforce these names, refactoring support when you change a WHAT or WHERE, better resource visualisation in project view,…
+
+
+### Layouts
+Layouts are relatively simple, as there usually are only a few layouts per screen. Therefore the rule can be simplified to:
+
+![layouts](/assets/layouts.png)
+
+Where` <WHAT> `is one of the following:
+
+| Prefix   | Usage   |
+| ------------ | ------------ |
+| activity   |  contentview for activity |
+|  fragment  | view for a fragment  |
+|  view  | inflated by a custom view  |
+|  item  | layout used in list/recycler/gridview  |
+|  layout  | layout reused using the include tag  |
+
+##### Examples:
+
+- **activity_main:** content view of the MainActivity
+- **fragment_articledetail:** view for the ArticleDetailFragment
+- **view_menu:** layout inflated by custom view class MenuView
+- **item_article:** list item in ArticleRecyclerView
+- **layout_actionbar_backbutton:** layout for an actionbar with a backbutton (too simple to be a customview)
+
+
+### Strings
+
+The `<WHAT>` part for Strings is irrelevant. So either we use `<WHERE>` to indicate where the string will be used:
+
+![strings](/assets/strings.png)
+
+or all if the string is reused throughout the app:
+
+![strings](/assets/strings2.png)
+
+##### Examples:
+
+- **articledetail_title:** title of ArticleDetailFragment
+- **feedback_explanation: **feedback explanation in FeedbackFragment
+- **feedback_namehint:** hint of name field in FeedbackFragment
+- **all_done:** generic “done” string
+
+`<WHERE>` obviously is the same for all resources in the same view.
+
+
+### Drawables
+
+The `<WHAT>` part for Drawables is irrelevant. So either we use `<WHERE>` to indicate where the drawable will be used:
+
+![drawables  ](/assets/drawables.png)
+
+or all if the drawable is reused throughout the app:
+
+![drawables  ](/assets/drawables2.png)
+
+Optionally you can add a `<SIZE>` argument, which can be an actual size “24dp” or a size qualifier “small”.
+
+##### Examples:
+
+- **articledetail_placeholder:** placeholder in ArticleDetailFragment
+- **all_infoicon:** generic info icon
+- **all_infoicon_large:** large version of generic info icon
+- **all_infoicon_24dp:** 24dp version of generic info icon
+
+
+### IDs
+
+For IDs, `<WHAT>` is the class name of the xml element it belongs to. Next is the screen the ID is in, followed by an optional description to distinguish similar elements in one screen.
+
+![ids](/assets/ids.png)
+
+##### Examples:
+
+- **tablayout_main ->** TabLayout in MainActivity
+- **imageview_menu_profile ->** profile image in custom MenuView
+- **textview_articledetail_title ->** title TextView in ArticleDetailFragment
+
+
+### Dimensions
+
+Apps should only define a limited set of dimensions, which are constantly reused. This makes most dimensions all by default.
+
+Therefore you should mostly use:
+
+![dimensions](/assets/dimensions.png)
+
+and optionally use the screen specific variant:
+
+![dimensions](/assets/dimensions2.png)
+
+Where `<WHAT>` is one of the following:
+
+| Prefix   |  Usage  |
+| ------------ | ------------ |
+| width   |  width in dp |
+|  height  |  height in dp |
+| size   | if width == height  |
+| margin   |  margin in dp |
+| padding   | padding in dp  |
+|elevation    | elevation in dp  |
+|  keyline  | absolute keyline measured from view edge in dp  |
+| textsize   | size of text in sp  |
+
+Note that this list only contains the most used `<WHAT>`s. Other dimensions qualifiers like: rotation, scale,… are usually only used in drawables and as such less reused.
+
+##### Examples:
+
+- **height_toolbar:** height of all toolbars
+- **keyline_listtext:** listitem text is aligned at this keyline
+- **textsize_medium:** medium size of all text
+- **size_menu_icon:** size of icons in menu
+- **height_menu_profileimage:** height of profile image in menu
+
+
