@@ -480,7 +480,7 @@ or all if the string is reused throughout the app:
 ##### Examples:
 
 - **articledetail_title:** title of ArticleDetailFragment
-- **feedback_explanation: **feedback explanation in FeedbackFragment
+- **feedback_explanation:** feedback explanation in FeedbackFragment
 - **feedback_namehint:** hint of name field in FeedbackFragment
 - **all_done:** generic “done” string
 
