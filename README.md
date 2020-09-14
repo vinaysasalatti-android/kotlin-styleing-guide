@@ -46,8 +46,6 @@ From now on, projects you create _should_ follow the correct style guidelines.
   + [Indentation](#indentation)
   + [Line Length](#line-length)
   + [Vertical Spacing](#vertical-spacing)
-- [Semicolons](#semicolons)
-- [Getters & Setters](#getters--setters)
 - [Brace Style](#brace-style)
 - [When Statements](#when-statements)
 - [Annotations](#annotations)
@@ -57,10 +55,7 @@ From now on, projects you create _should_ follow the correct style guidelines.
   + [Companion Objects](#companion-objects)
   + [Optionals](#optionals)
 - [XML Guidance](#xml-guidance)
-- [Language](#language)
-- [Copyright Statement](#copyright-statement)
-- [Smiley Face](#smiley-face)
-- [Credit](#credits)
+
 
 
 ## Nomenclature
