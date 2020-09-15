@@ -53,7 +53,7 @@ From now on, projects you create _should_ follow the correct style guidelines.
   + [Constants vs. Variables](#constants-vs-variables)
   + [Companion Objects](#companion-objects)
   + [Optionals](#optionals)
-- [String constants, naming, and values](#String-constants,-naming,-and-values)
+- [String constants, naming, and values](#String-constants-naming-and-values)
 - [Arguments in Fragments and Activities](#Arguments-in-Fragments-and-Activities)
 - [XML Guidance](#xml-guidance)
 
