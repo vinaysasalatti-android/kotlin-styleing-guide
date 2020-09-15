@@ -48,12 +48,13 @@ From now on, projects you create _should_ follow the correct style guidelines.
   + [Vertical Spacing](#vertical-spacing)
 - [Brace Style](#brace-style)
 - [When Statements](#when-statements)
-- [Annotations](#annotations)
 - [Types](#types)
   + [Type Inference](#type-inference)
   + [Constants vs. Variables](#constants-vs-variables)
   + [Companion Objects](#companion-objects)
   + [Optionals](#optionals)
+- [String constants, naming, and values](#String-constants,-naming,-and-values)
+- [Arguments in Fragments and Activities](#Arguments-in-Fragments-and-Activities)
 - [XML Guidance](#xml-guidance)
 
 
@@ -387,6 +388,67 @@ When accessing a nullable value, use the safe call operator if the value is only
 ```kotlin
 editText?.setText("foo")
 ```
+
+## String constants, naming, and values
+
+Many elements of the Android SDK such as `SharedPreferences`, `Bundle`, or `Intent` use a key-value pair approach so it's very likely that even for a small app you end up having to write a lot of String constants.
+
+When using one of these components, you __must__ define the keys as a `static final` fields and they should be prefixed as indicated below.
+
+| Element            | Field Name Prefix |
+| -----------------  | ----------------- |
+| SharedPreferences  | `PREF_`             |
+| Bundle             | `BUNDLE_`           |
+| Fragment Arguments | `ARGUMENT_`         |
+| Intent Extra       | `EXTRA_`            |
+| Intent Action      | `ACTION_`           |
+
+Note that the arguments of a Fragment - `Fragment.getArguments()` - are also a Bundle. However, because this is a quite common use of Bundles, we define a different prefix for them.
+
+Example:
+
+```java
+// Note the value of the field is the same as the name to avoid duplication issues
+static final String PREF_EMAIL = "PREF_EMAIL";
+static final String BUNDLE_AGE = "BUNDLE_AGE";
+static final String ARGUMENT_USER_ID = "ARGUMENT_USER_ID";
+
+// Intent-related items use full package name as value
+static final String EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME";
+static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
+```
+## Arguments in Fragments and Activities
+
+When data is passed into an `Activity` or `Fragment` via an `Intent` or a `Bundle`, the keys for the different values __must__ follow the rules described in the section above.
+
+When an `Activity` or `Fragment` expects arguments, it should provide a `public static` method that facilitates the creation of the relevant `Intent` or `Fragment`.
+
+In the case of Activities the method is usually called `getStartIntent()`:
+
+```java
+public static Intent getStartIntent(Context context, User user) {
+	Intent intent = new Intent(context, ThisActivity.class);
+	intent.putParcelableExtra(EXTRA_USER, user);
+	return intent;
+}
+```
+
+For Fragments it is named `newInstance()` and handles the creation of the Fragment with the right arguments:
+
+```java
+public static UserFragment newInstance(User user) {
+	UserFragment fragment = new UserFragment();
+	Bundle args = new Bundle();
+	args.putParcelable(ARGUMENT_USER, user);
+	fragment.setArguments(args)
+	return fragment;
+}
+```
+
+__Note 1__: These methods should go at the top of the class before `onCreate()`.
+
+__Note 2__: If we provide the methods described above, the keys for extras and arguments should be `private` because there is not need for them to be exposed outside the class.
+
 ## XML Guidance
 
 Because the lack of XML namespaces, makes managing Android resources tedious. And causes things to grow out of control easily, especially in large projects.
@@ -554,5 +616,23 @@ Note that this list only contains the most used `<WHAT>`s. Other dimensions qual
 - **textsize_medium:** medium size of all text
 - **size_menu_icon:** size of icons in menu
 - **height_menu_profileimage:** height of profile image in menu
+
+# License
+
+```
+Copyright 2020.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
 
 
