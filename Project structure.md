@@ -130,6 +130,7 @@ IHEATH / Everion packages are to cater the devices which are used in the applica
 │   └── NotificationServiceHelper.kt
 
 ```
+As the name says contains all the things related to notifications , like services , builders and anything and everything related to notifications .
 
 ## UI package 
 ```
@@ -148,6 +149,7 @@ IHEATH / Everion packages are to cater the devices which are used in the applica
 │   │       └── LoginViewModel.kt
 
 ```
+This package basically uses package by feature internally , every sub package is usually a feature , and that sub package contains everything associated to that feature , many times these features package can contain many sub level features also , and this entire package contains anyting and everuthing related to user interface related to any perticuler feature .
 
 ## Utils package 
 ```
@@ -175,4 +177,5 @@ IHEATH / Everion packages are to cater the devices which are used in the applica
         └── WeightUtils.kt
 
 ```
+This package contains all the common utility calsses and methods required by the entire application , usually like a toolbox for the whole project , can contain multiple utility packages which cater diffrent streams pr components like network utils, extention utils etc.
 
