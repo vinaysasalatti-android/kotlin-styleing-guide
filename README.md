@@ -24,7 +24,16 @@ The file can be found [here](https://github.com/vinaysasalatti-android/kotlin-st
 
 To install the file, open Android Studio Settings and go to **Editor > Code Style > Kotlin**, then click the gear menu and choose **Import Scheme...**.
 
-From now on, projects you create _should_ follow the correct style guidelines.
+From now on, projects you create _should_ follow the correct style guidelines and similer package structurs .
+
+## Project structure which we follow
+
+we use package structure which is combination of package by layer, type and features
+- [Package by type](https://github.com/vinaysasalatti-android/kotlin-styleing-guide/blob/master/Project%20structure.md#package-by-type)
+- [Package by layer](https://github.com/vinaysasalatti-android/kotlin-styleing-guide/blob/master/Project%20structure.md#package-by-layer)
+- [package by feature](https://github.com/vinaysasalatti-android/kotlin-styleing-guide/blob/master/Project%20structure.md#package-by-feature)
+
+The whole Project structure guidlines can he found here [Project structure which we follow](https://github.com/vinaysasalatti-android/kotlin-styleing-guide/blob/master/Project%20structure.md#project-structure-which-we-follow)
 
 
 ## Table of Contents
