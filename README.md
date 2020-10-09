@@ -35,6 +35,41 @@ we use package structure which is combination of package by layer, type and feat
 
 The whole Project structure guidlines can he found here [Project structure which we follow](https://github.com/vinaysasalatti-android/kotlin-styleing-guide/blob/master/Project%20structure.md#project-structure-which-we-follow)
 
+## Git Guidelines 
+we would like to commit code more often so the big tasks can be broken in to pieces and committed stage wise, so we can drilldown development bugs easily on grass root levels, task based push will avoid mixup of more features in single commit which would keep commits history cleaner, following this give us advantages of reverting entire commit when unstable code surfaces, frequent commit eases development with less conflicts :]
+
+### Git commit messages
+Good commit messages have 3 critical benefits:
+
+1. Help speed up the code review process
+2. Help in writing good release notes 
+3. Help future maintainers \(and your future self\) understand why a change was made, or what exactly a particular bug was
+
+### Sample commit message
+
+```text 
+(syntax would be as below)
+ main line (70 chars or less)
+  - sub lines / related small bullets points if nessary(50 chars or less)
+  - related collateral changes bullets points if nessary(50 chars or less)
+  
+(example would be as below)
+-single line-
+fix: Fixed issue with headerText going under status text (internal fixes which wont have tikets :])
+fix: IN-753 - Changed date to UTC value
+
+-multi line- 
+Add: IN-749 - Create API to fetch Prom Details
+     - Create Prom Response data class
+     - Define API to fetch Prom details
+```
+
+* Main line start with words like “Add:”, “Update:”, and “Fix:”
+* Main line should have a Jira ticket numbers associated with the task / subtask / story / bug - _eg_ - IN-674
+* Main lines should be followed by a short note, never end with a period
+* Sub lines can be some short details in bullet form (not mandatory to have one)
+* The explanatory text isn’t required but encouraged, especially when a commit fixes a bug. It’s good practice to explain clearly why a certain issue was occurring and how the commit fixes it. 
+
 
 ## Table of Contents for our "Style Guide"
 
