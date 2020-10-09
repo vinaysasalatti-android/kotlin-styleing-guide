@@ -1,6 +1,6 @@
-# Kotlin Style Guide
+# Android Developer Guide
 
-This style guide is different from others you may see, because the focus is centered on readability for print and the web. We created this style guide to keep the code in our tutorials consistent.
+This guide is different from others you may see, here we will be focousing for a smooth onboarding process for development to follow some guidlines which we follow accross every project we build, We created this guide to keep the code in our projects consistent so every developer can unite anytime without any hustle 
 
 Our overarching goals are __conciseness__, __readability__ and __simplicity__.
 
@@ -31,12 +31,12 @@ From now on, projects you create _should_ follow the correct style guidelines an
 we use package structure which is combination of package by layer, type and features
 - [Package by type](https://github.com/vinaysasalatti-android/kotlin-styleing-guide/blob/master/Project%20structure.md#package-by-type)
 - [Package by layer](https://github.com/vinaysasalatti-android/kotlin-styleing-guide/blob/master/Project%20structure.md#package-by-layer)
-- [package by feature](https://github.com/vinaysasalatti-android/kotlin-styleing-guide/blob/master/Project%20structure.md#package-by-feature)
+- [Package by feature](https://github.com/vinaysasalatti-android/kotlin-styleing-guide/blob/master/Project%20structure.md#package-by-feature)
 
 The whole Project structure guidlines can he found here [Project structure which we follow](https://github.com/vinaysasalatti-android/kotlin-styleing-guide/blob/master/Project%20structure.md#project-structure-which-we-follow)
 
 
-## Table of Contents
+## Table of Contents for our "Style Guide"
 
 - [Nomenclature](#nomenclature)
   + [Packages](#packages)
