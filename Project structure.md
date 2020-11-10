@@ -118,7 +118,6 @@ this is package contains all the evernts we have created for the application , b
 
 ```
 
-```
 iHEATH / everion packages are to cater the devices which are used in the applications , any devices which will be integrated would be in there own seperate 
 
 ## Notification package 
