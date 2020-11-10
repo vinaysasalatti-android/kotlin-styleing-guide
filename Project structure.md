@@ -27,8 +27,7 @@ Since all of these has there own advantages and pain points so using all of them
 ├── data
 ├── di
 ├── eventbus
-├── everion
-├── ihealth
+├── devices
 ├── interfaces
 ├── notification
 ├── ui
@@ -98,30 +97,29 @@ The di stands for Dependency Injection. It is a package that contains the AppCom
 ```
 this is package contains all the evernts we have created for the application , basically events are like callback interface without the boilerplate code , we use EventBuS for this 
 
-## Everion package 
+## Devices package 
 ```
-├── everion
-│   ├── EverionManager.java
-│   ├── EverionUtils.java
-│   ├── listeners
-│   │   └── EverionStatusListener.kt
-│   ├── model
-│   │   └── VitalRecordRequestObj.java
-│   └── service
-│       └── DeviceConnectionService.kt
+├── devices 
+|   ├── everion
+│   | ├── EverionManager.java
+│   | ├── EverionUtils.java
+│   | ├── listeners
+│   | │   └── EverionStatusListener.kt
+│   | ├── model
+│   | │   └── VitalRecordRequestObj.java
+│   | └── service
+│   |      └── DeviceConnectionService.kt
+|   ├── ihealth
+│   | ├── IHealthConnectionStatus.kt
+│   | ├── IHealthManager.kt
+│   | └── ihealthutils
+│   |     ├── IHealthBPCallback.kt
+│   |     └── IHealthWeightCallback.kt
 
 ```
-## Ihealth package 
-```
-├── ihealth
-│   ├── IHealthConnectionStatus.kt
-│   ├── IHealthManager.kt
-│   └── ihealthutils
-│       ├── IHealthBPCallback.kt
-│       └── IHealthWeightCallback.kt
 
 ```
-IHEATH / Everion packages are to cater the devices which are used in the applications , any devices which will be integrated would be in there own seperate 
+iHEATH / everion packages are to cater the devices which are used in the applications , any devices which will be integrated would be in there own seperate 
 
 ## Notification package 
 ```
